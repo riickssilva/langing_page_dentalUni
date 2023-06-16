@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Encontre seu Dentista</title>
+
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+			<div class="caixa">
+			<img src="logo.png" alt="Logo DentalUni">
+
+				<nav>
+					<ul>
+					  <li><a href="#">A COOPERATIVA</a></li>
+					  <li><a href="#">BLOG</a></li>
+					  <li><a href="#">PLANOS ODONTOLÓGICOS</a></li>
+					  <li><a href="encontre_dentista.html">ENCONTRE SEU DENTISTA</a></li>
+					  <li><a href="#">OUVIDORIA</a></li>
+					  <li><a href="#">IDSS</a></li>
+					  <li><a href="#">CONTATOS</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+
+                <script>
+                    function habilitarCidades() {
+                        var estado = document.getElementById("estado");
+                        var cidade = document.getElementById("cidade");
+            
+                        // Limpar as opções anteriores
+                        cidade.innerHTML = "";
+            
+                        // Verificar se um estado foi selecionado
+                        if (estado.value !== "") {
+                            // Obter as cidades correspondentes ao estado selecionado
+                            var cidades = getCidadesPorEstado(estado.value);
+            
+                            // Adicionar as opções de cidades
+                            for (var i = 0; i < cidades.length; i++) {
+                                var option = document.createElement("option");
+                                option.text = cidades[i];
+                                option.value = cidades[i];
+                                cidade.add(option);
+                            }
+            
+                            // Habilitar a caixa de seleção de cidades
+                            cidade.disabled = false;
+                        } else {
+                            // Desabilitar a caixa de seleção de cidades se nenhum estado for selecionado
+                            cidade.disabled = true;
+                        }
+                    }
+            
+                    function getCidadesPorEstado(estado) {
+                        // Mapear as cidades correspondentes a cada estado
+                        var cidadesPorEstado = {
+                            "AC": ["Rio Branco"],
+                            "AL": ["Maceio"],
+                            "AM": ["Manaus"],
+                            "AP": ["Amapa", "Macapa"],
+                            "BA": ["Salvador" , "Vitoria da Conquista"],
+                            "CE": ["Fortaleza" , "Juazeiro do Norte"],
+                            "DF": ["Brasilia"],
+                            "ES": ["Vitoria"],
+                            "GO": ["Goiania"],
+                            "MA": ["São Luiz"],
+                            "MG": ["Belo Horizonte", "Uberlandia"],
+                            "MS": ["Campo Grande"],
+                            "MT": ["Cuiaba"],
+                            "PA": ["Belem"],
+                            "PB": ["Joao Pessoa"],
+                            "PE": ["Recife"],
+                            "PI": ["Teresina"],
+                            "PR": ["Curitiba" , "Sao Jose dos Pinhais"],
+                            "RJ": ["Rio de Janeiro", "Niteroi", "Duque de Caxias"],
+                            "RN": ["Natal"],
+                            "RO": ["Porto Velho"],
+                            "RS": ["Porto Alegre"],
+                            "SC": ["Florianopolis"],
+                            "SE": ["Aracaju"],
+                            "SP": ["Sao Paulo", "Campinas", "Santo André"],
+                            "TO": ["Palmas"],
+                        };
+            
+                        // Retornar as cidades correspondentes ao estado selecionado
+                        return cidadesPorEstado[estado] || [];
+                    }
+                </script>
+			<form>
+				<label for="nome">Nome do Dentista / Clínica        (opicional)</label>
+                <input type="text" id="nome" name="nome">
+
+				<label for="estado">Estado</label>
+				<select name="estado" type="box" id="estado" onchange="habilitarCidades()">
+                <td>
+                    <option value="">Seleciona um Estado</option>
+                    <option value="AC">Acre</option> 
+                    <option value="AL">Alagoas</option> 
+                    <option value="AM">Amazonas</option> 
+                    <option value="AP">Amapá</option> 
+                    <option value="BA">Bahia</option> 
+                    <option value="CE">Ceará</option> 
+                    <option value="DF">Distrito Federal</option> 
+                    <option value="ES">Espírito Santo</option> 
+                    <option value="GO">Goiás</option> 
+                    <option value="MA">Maranhão</option> 
+                    <option value="MT">Mato Grosso</option> 
+                    <option value="MS">Mato Grosso do Sul</option> 
+                    <option value="MG">Minas Gerais</option> 
+                    <option value="PA">Pará</option> 
+                    <option value="PB">Paraíba</option> 
+                    <option value="PE">Pernambuco</option> 
+                    <option value="PI">Piauí</option>
+                    <option value="PR">Paraná</option>  
+                    <option value="RJ">Rio de Janeiro</option> 
+                    <option value="RN">Rio Grande do Norte</option> 
+                    <option value="RO">Rondônia</option> 
+                    <option value="RS">Rio Grande do Sul</option> 
+                    <option value="SC">Santa Catarina</option> 
+                    <option value="SE">Sergipe</option> 
+                    <option value="SP">São Paulo</option> 
+                    <option value="TO">Tocantins</option> 
+                   </select>
+                   </td>
+
+				<label for="cidade">Selecione a cidade</label>
+				<select name="cidade" type="box" id="cidade" disabled>
+                    <option value="">Selecione um estado primeiro</option>
+                </select>
+
+				<label for="bairro">Bairro</label>
+                <input type="text" id="bairro" name="bairro">
+
+                <label for="urgencia">Urgência:</label>
+                <select id="urgencia" type="box" name="urgencia">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+
+                <label for="especialidade">Especialidade:</label>
+                <input type="text" id="especialidade" name="especialidade">
+
+                <button type="submit">Buscar</button>
+                </form>
+
+                <table>
+                    <tr>
+                        <td>Nome</td>
+                        <td>CRO</td>
+                        <td>Cidade</td>
+                    </tr>
+                    <tr>
+                        <td>JESSIKA DANIELLA LAZAROTTO</td> 
+                        <td>25362</td>
+                        <td>CURITIBA</td>
+                    </tr>
+                    <tr>
+                        <td>HIAGO RODRIGO PASQUALOTTO</td> 
+                        <td>21405</td>
+                        <td>CURITIBA</td>
+                    </tr>
+                    <tr>
+                        <td>ADRIELLE ZANELATO TENCATI</td> 
+                        <td>26904</td>
+                        <td>SÃO JOSÉ DOS PINHAIS</td>
+                    </tr>
+                    <tr>
+                        <td>ALINE PRISCILA HARNISCH</td> 
+                        <td>22821</td>
+                        <td>SÃO JOSÉ DOS PINHAIS</td>
+                    </tr>
+                </table>
+
+		</main>
+
+		<footer>
+			<img src="logo.png" alt="Logo DentalUni">
+			<p>Entre em contato conosco: <a href="https://dentaluni.com.br/contato">https://dentaluni.com.br/contato</a></p>
+		</footer>
+	</body>
+</html>
